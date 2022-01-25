@@ -31,6 +31,8 @@
 
 	chosen {
 		stdout-path = &uart1;
+                /*rd.systemd.unit = &kepm.target;*/
+                /*quiet;*/
 	};
 
 
@@ -75,7 +77,8 @@
 			regulator-name = "lcd-3v3";
 			gpio = <&gpio2 1 GPIO_ACTIVE_LOW>;
 			enable-active-high;
-			status = "okay";
+			/*status = "okay";*//*vf*/
+			status = "disabled";/*vf*/
 		};
 
 		/* For uSD/MMC socket on EA COM Base Board */
@@ -150,7 +153,7 @@
 &audmux {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_audmux>;
-	status = "okay";
+	status = "disabled";//vf
 };
 
 &csi2 {
@@ -168,7 +171,7 @@
 	pinctrl-0 = <&pinctrl_lcdif_dat>;
 	lcd-supply = <&reg_lcd_3v3>;
 	display = <&display0>;
-	status = "okay";
+	status = "disabled";//vf
 
 	display0: display@0 {
 		bits-per-pixel = <32>;
@@ -201,7 +204,7 @@
 
 	display = <&display1>;
 	disp-dev = "ldb";
-	status = "okay";
+	status = "disabled";//vf
 
 	assigned-clocks = <&clks IMX6SX_CLK_LCDIF2_SEL>;
 	assigned-clock-parents = <&clks IMX6SX_CLK_LDB_DI0>;
@@ -214,13 +217,14 @@
 };
 
 &ldb {
-	status = "okay";
+	status = "disabled";//vf
 
 	lvds-channel@0 {
 		fsl,data-mapping = "spwg";
 		fsl,data-width = <18>;
 		crtc = "lcdif2";
-		status = "okay";
+		/*status = "okay";*//*vf*/
+	        status = "disabled";/*vf*/
 
 		display-timings {
 			native-mode = <&t_lvds>;
@@ -264,13 +268,13 @@
 	status = "okay";
 };
 
-&flexcan1 {
+/*&flexcan1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_flexcan1>;
 	xceiver-supply = <&reg_psu_5v>;
 	trx-stby-gpio = <&gpio2 17 GPIO_ACTIVE_LOW>;
 	status = "okay";
-};
+};*/
 
 &flexcan2 {
 	pinctrl-names = "default";
@@ -344,16 +348,17 @@
 };
 
 /* For uSD/MMC socket on EA COM Base Board */
-&usdhc2 {
+/*&usdhc2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_usdhc2>;
 	cd-gpios = <&gpio2 16 GPIO_ACTIVE_LOW>;
 	vmmc-supply = <&vcc_sd2>;
 	no-1-8-v;
 	keep-power-in-suspend;
-	wakeup-source;
-	status = "okay";
-};
+	wakeup-source;*/
+	/*status = "okay";*//*vf*/
+	/*status = "disabled";*//*vf*/
+/*};*/
 
 
 &i2c1 {
@@ -416,7 +421,8 @@
 		interrupt-parent = <&gpio2>;
 		interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
 		wakeup-gpios = <&gpio2 15 GPIO_ACTIVE_HIGH>;
-		status = "okay";
+		/*status = "okay";*//*vf*/
+		status = "disabled";/*vf*/
 	};
 
 	/* FocalTech touch controller through RGB display interface connector on Carrier Board */
@@ -539,12 +545,12 @@
 			>;
 		};
 
-		pinctrl_canfd1: canfd1grp-1 {
+		/*pinctrl_canfd1: canfd1grp-1 {
 			fsl,pins = <
 				MX6SX_PAD_QSPI1B_DQS__CANFD_TX1         0x1b0b0
 				MX6SX_PAD_QSPI1A_SS1_B__CANFD_RX1       0x1b0b0
 			>;
-		};
+		};*/
 
 		pinctrl_canfd2: canfd2grp-1 {
 			fsl,pins = <
@@ -555,7 +561,7 @@
 
 		pinctrl_rgb_connector: rgb_connector_grp {
 			fsl,pins = <
-				MX6SX_PAD_CSI_DATA03__GPIO1_IO_17       0x1f0b0
+				/*MX6SX_PAD_CSI_DATA03__GPIO1_IO_17       0x1f0b0*//*vf*/
 				MX6SX_PAD_QSPI1A_DATA3__GPIO4_IO_19     0x1f0b0
 			>;
 		};
@@ -566,12 +572,12 @@
 			>;
 		};
 
-		pinctrl_flexcan1: flexcan1grp {
+		/*pinctrl_flexcan1: flexcan1grp {
 			fsl,pins = <
 				MX6SX_PAD_QSPI1B_DQS__CAN1_TX		0x1b020
 				MX6SX_PAD_QSPI1A_SS1_B__CAN1_RX		0x1b020
 			>;
-		};
+		};*/
 
 		pinctrl_flexcan2: flexcan2grp {
 			fsl,pins = <
@@ -583,7 +589,7 @@
 
 		pinctrl_can_gpios: can-gpios {
 			fsl,pins = <
-				MX6SX_PAD_KEY_ROW2__GPIO2_IO_17 0x17059
+				/*MX6SX_PAD_KEY_ROW2__GPIO2_IO_17 0x17059*//*vf*/
 			>;
 		};
 
@@ -623,9 +629,9 @@
 				MX6SX_PAD_LCD1_ENABLE__LCDIF1_ENABLE 0x4001b0b0
 				MX6SX_PAD_LCD1_VSYNC__LCDIF1_VSYNC 0x4001b0b0
 				MX6SX_PAD_LCD1_HSYNC__LCDIF1_HSYNC 0x4001b0b0
-				MX6SX_PAD_LCD1_RESET__GPIO3_IO_27 0x4001b0b0
+				/*MX6SX_PAD_LCD1_RESET__GPIO3_IO_27 0x4001b0b0*///vf
 				MX6SX_PAD_GPIO1_IO09__GPIO1_IO_9 0x4001b0b0
-				MX6SX_PAD_ENET1_CRS__GPIO2_IO_1 0x110b0
+				/*MX6SX_PAD_ENET1_CRS__GPIO2_IO_1 0x110b0*//*vf*/
 			>;
 		};
 
@@ -693,7 +699,7 @@
 				MX6SX_PAD_GPIO1_IO07__GPIO1_IO_7	0x1b0b1
 
 				/* RF_RST */
-				MX6SX_PAD_CSI_DATA02__GPIO1_IO_16	0x1b0b1
+				/*MX6SX_PAD_CSI_DATA02__GPIO1_IO_16	0x1b0b1*///vf
 			>;
 		};
 
@@ -723,7 +729,7 @@
 			>;
 		};
 
-		pinctrl_usdhc2: usdhc2grp {
+		/*pinctrl_usdhc2: usdhc2grp {
 			fsl,pins = <
 				MX6SX_PAD_SD2_CMD__USDHC2_CMD		0x17059
 				MX6SX_PAD_SD2_CLK__USDHC2_CLK		0x10059
@@ -731,9 +737,32 @@
 				MX6SX_PAD_SD2_DATA1__USDHC2_DATA1	0x17059
 				MX6SX_PAD_SD2_DATA2__USDHC2_DATA2	0x17059
 				MX6SX_PAD_SD2_DATA3__USDHC2_DATA3	0x17059
-				MX6SX_PAD_KEY_ROW1__GPIO2_IO_16		0x17059 /* CD */
+				MX6SX_PAD_KEY_ROW1__GPIO2_IO_16		0x17059
+
 			>;
-		};
+		};*/
+//ecspi1 {
+    pinctrl_ecspi1: ecspi1grp {
+                    fsl,pins = <
+                       MX6SX_PAD_KEY_COL0__ECSPI1_SCLK            0x000010B0
+                       MX6SX_PAD_KEY_COL1__ECSPI1_MISO            0x000010B0
+                       MX6SX_PAD_KEY_ROW0__ECSPI1_MOSI            0x000010B0
+                       //MX6SX_PAD_KEY_ROW1__ECSPI1_SS0             0x000010B0
+                    
+>;
+                };
+    pinctrl_ecspi1_cs: ecspi1_cs_grp {
+              fsl,pins = <
+                    //MX6SX_PAD_KEY_ROW1__GPIO2_IO_16    0x80000000    /* cs0,  */
+                    //MX6SX_PAD_KEY_ROW3__GPIO2_IO_18       0x80000000    /* cs1 */
+                      //MX6SX_PAD_KEY_ROW1__GPIO2_IO_16    0x000010B0    /* cs0,  */
+                      MX6SX_PAD_KEY_ROW1__ECSPI1_SS0 0x000010B0
+                     // MX6SX_PAD_KEY_ROW3__GPIO2_IO_18       0x000010B0    /* cs1 */
+                      //MX6SX_PAD_KEY_COL3__GPIO2_IO_13    0x000010B0    /* cs2,  */
+                      //MX6SX_PAD_KEY_ROW2__GPIO2_IO_17       0x000010B0    /* cs3 */
+              >;
+        };
+//};/*vf*/
 
 
 

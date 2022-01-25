@@ -265,7 +265,7 @@
 		caam_sm: caam-sm@00100000 {
 			compatible = "fsl,imx6q-caam-sm";
 			reg = <0x00100000 0x8000>;
-		};
+		};/*Have not been changed vf*/
 
 		irq_sec_vio: caam_secvio {
 			compatible = "fsl,imx6q-caam-secvio";
@@ -275,7 +275,7 @@
 			watchdog-tamper = "enabled";
 			internal-boot-tamper = "enabled";
 			external-pin-tamper = "disabled";
-		};
+		};/*Have not been changed vf*/
 
 		gpu3d: gpu3d@01800000 {
 			compatible = "fsl,imx6sx-gpu", "fsl,imx6q-gpu";
@@ -349,7 +349,7 @@
 					status = "disabled";
 				};
 
-				ecspi1: ecspi@02008000 {
+                                ecspi1: ecspi@02008000 {
 					#address-cells = <1>;
 					#size-cells = <0>;
 					compatible = "fsl,imx6sx-ecspi", "fsl,imx51-ecspi";
@@ -360,8 +360,71 @@
 					clock-names = "ipg", "per";
 					dmas = <&sdma 3 7 1>, <&sdma 4 7 2>;
 					dma-names = "rx", "tx";
-					status = "disabled";
-				};
+					//status = "okay";
+                                        status = "disabled";
+				/*};
+
+                               &ecspi1 {*/
+                                      fsl,spi-num-chipselects = <1>;
+                                      cs-gpios = <0>;
+                                      //cs-gpios = <&gpio2 16 GPIO_ACTIVE_LOW>;
+                                      //cs-gpios = <2 16 0>;
+                                      pinctrl-names = "default";
+                                     // pinctrl-0 = <&pinctrl_ecspi1&pinctrl_ecspi1_cs>;
+                                      pinctrl-0 = <&pinctrl_ecspi1>;
+
+                                      //cs-gpios = <&gpio2 18 GPIO_ACTIVE_LOW>, <&gpio2 16 GPIO_ACTIVE_LOW, gpio2 18 GPIO_ACTIVE_LOW>, <&gpio2 16 GPIO_ACTIVE_LOW>;
+                                      //cs-gpios = <&gpio2 16 GPIO_ACTIVE_LOW>;
+                                      //status = "okay";
+                                      //chip1: spidev@0 {
+                                      spidev@0 {
+                                                compatible = "rohm,dh2228fv";
+                                                spi-max-frequency = <20000000>;
+                                                reg = <0>;
+                                                spi-master;
+                                                //status = "okay";
+                                      };
+	/*ksz8463: ksz8463@0 {
+		compatible = "microchip,ksz8463";
+		reg = <0>;
+
+		spi-max-frequency = <12000000>;
+		spi-cpha;
+		spi-cpol;
+		status = "okay";
+	};*/
+
+                                     /*ksz8463: ksz8463@0 {
+					compatible = "microchip,ksz8463";
+					reg = <0>;
+					spi-max-frequency = <12000000>;
+					spi-cpha;
+					spi-cpol;
+                   
+					status = "okay";
+					ports {
+						#address-cells = <1>;
+						#size-cells = <0>;
+						port@0 {
+							reg = <0>;
+							label = "lan1";
+						};
+						port@1 {
+							reg = <1>;
+							label = "lan2";
+						};
+						port@3 {
+							reg = <2>;
+							label = "cpu";
+							ethernet = <&fec1>;
+							fixed-link {
+								speed = <100>;
+								full-duplex;
+							};
+						};
+					};
+			             };*/
+                              };
 
 				ecspi2: ecspi@0200c000 {
 					#address-cells = <1>;
@@ -835,7 +898,7 @@
 			caam_snvs: caam-snvs@020cc000 {
 				compatible = "fsl,imx6q-caam-snvs";
 				reg = <0x020cc000 0x4000>;
-			};
+			};/*Have not been changed vf*/
 
 			snvs: snvs@020cc000 {
 				compatible = "fsl,sec-v4.0-mon", "syscon", "simple-mfd";

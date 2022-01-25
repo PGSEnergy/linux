@@ -13,6 +13,15 @@
 		linux,usable-memory = <0x80000000 0x3ff00000>;
 		reg = <0x80000000 0x40000000>;
 	};
+reserved-memory {
+                m4_reserved{
+                        reg = <0x9FF00000 0x100000>;
+                        no-map;
+                };
+		/*linux,cma {
+			size = <0x2000000>;
+		};*/
+};/*vf*/
 };
 
 &iomuxc {
@@ -24,6 +33,19 @@
  * The following modules are conflicting with M4, disable them when m4
  * is running.
  */
+
+&gpio5 {
+	status = "disabled";
+};
+
+&gpio6 {
+	status = "disabled";
+};
+
+&gpio7 {
+	status = "disabled";
+};
+
 &flexcan1 {
 	status = "disabled";
 };
@@ -46,6 +68,14 @@
 	status = "disabled";
 };
 
+&uart5 {
+	status = "disabled";
+};//vf
+
+&usdhc2 {
+        status = "disabled";
+};//vf
+
 &adc1 {
         status = "disabled";
 };
@@ -59,12 +89,16 @@
 };
 
 &qspi_m4 {
-	status = "okay";
+	status = "disabled";//vf
 };
 
 &ocram {
 	reg = <0x00901000 0x1E000>;
 };
+
+&snvs_rtc {
+   status = "okay";
+};//vf
 
 &clks {
 	fsl,shared-clks-number = <0x23>;

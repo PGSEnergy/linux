@@ -9,10 +9,17 @@
 
 #include <dt-bindings/input/input.h>
 #include "imx6sx.dtsi"
+#include "imx6sx-board.dtsi"//vf
 
 / {
 	model = "Embedded Artists i.MX6 SoloX COM Board";
 	compatible = "fsl,imx6sxea-com", "fsl,imx6sx";
+
+        pps {
+          compatible = "pps-gpio";
+          gpios = <&gpio3 23 0>;
+          assert-falling-edge;
+        };
 
 	memory {
 		reg = <0x80000000 0x40000000>;
@@ -85,6 +92,8 @@
 	pinctrl-assert-gpios = <&gpio2 0 GPIO_ACTIVE_LOW>;
 	phy-mode = "rgmii";
 	local-mac-address = [00 1a f1 01 7f 28]; 
+/*pinctrl_enet1_event2_out: enet1_event2_out {
+fsl,pins = <MX6SX_PAD_LCD1_DATA22__ENET2_1588_EVENT2_OUT  >;*///vf
 	status = "okay";
 };
 
