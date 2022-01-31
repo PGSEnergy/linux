@@ -66,9 +66,4 @@ config IMX_RPMSG_TTY
 	default m
 	depends on RPMSG && m
 
-config RPMSG_MULTIENDPOINT
-	tristate "RPMSG multiple endpoints capable driver -- loadable modules only"
-	default m
-	depends on RPMSG && m
-
 endmenu
