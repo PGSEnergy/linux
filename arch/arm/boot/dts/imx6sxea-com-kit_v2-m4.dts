@@ -8,6 +8,9 @@
 
 #include "imx6sxea-com-kit_v2.dts"
 
+
+#define CONFIG_CONT1_SPI_A
+
 /{
 	memory {
 		linux,usable-memory = <0x80000000 0x3ff00000>;
@@ -22,11 +25,71 @@ reserved-memory {
 			size = <0x2000000>;
 		};*/
 };/*vf*/
+
+pps-gen {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pps_gen_pins>;
+	compatible = "pps-gen-gpio";
+	gpios = <&gpio1 9>;
+	default-state = "off";
 };
 
-&iomuxc {
+// pps {
+// 		pinctrl-names = "default";
+// 		pinctrl-0 = <&pinctrl_pps>;
+
+// 		gpios = <&gpio1 26 GPIO_ACTIVE_HIGH>;
+// 		assert-falling-edge;
+
+// 		echo-gpios = <&gpio1 27 GPIO_ACTIVE_HIGH>;
+// 		echo-active-ms = <100>;
+
+// 		compatible = "pps-gpio";
+// 	};
+
+/*pps {
 	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_hog>;
+	pinctrl-0 = <&pinctrl_pps>;
+
+	gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
+	assert-falling-edge;
+
+	compatible = "pps-gpio";
+	status = "okay";
+};*/
+};
+
+
+//st
+
+&iomuxc {
+    pinctrl-names = "default";
+    pinctrl-0 = <&pinctrl_hog>;
+
+    imx6sx-board {
+		
+			BOARD_InitPins: BOARD_InitPinsgrp {     
+				fsl,pins = <
+					MX6SX_PAD_QSPI1A_DATA0__ECSPI1_MOSI        0x000010B0
+					MX6SX_PAD_QSPI1A_DATA1__ECSPI1_MISO        0x000010B0
+					MX6SX_PAD_QSPI1A_SCLK__ECSPI1_SCLK         0x000010B0
+					
+				>;
+			};
+			pinctrl_ecspi1_cs: ecspi1cs {                        
+				fsl,pins = <                                
+				MX6SX_PAD_QSPI1A_SS0_B__ECSPI1_SS0         0x000010B0                        
+				>;                
+				};
+			pps_gen_pins: pinmux_pps_gen_pins {
+  			pinctrl-single,pins = <
+				MX6SX_PAD_GPIO1_IO09__GPIO1_IO_9           0x000010B0
+				
+			>;
+			};
+
+		
+	};
 };
 
 /*
@@ -53,6 +116,68 @@ reserved-memory {
 &flexcan2 {
 	status = "disabled";
 };
+
+&ecspi1 {
+
+	fsl,spi-num-chipselects = <4>;        
+	//cs-gpios = <&gpio4 19 0>;
+   pinctrl-names = "default";
+   pinctrl-0 = <&BOARD_InitPins &pinctrl_ecspi1_cs>;
+   status = "okay";
+
+   	spidev: spidev@0 {
+			compatible = "rohm,dh2228fv";
+			spi-max-frequency = <20000000>;
+			reg = <0>;
+			spi-master;
+			status = "okay";
+	};
+
+	spitest: spitest@0{
+		compatible = "linux,spi-loopback-test";
+		reg = <1>;
+		spi-max-frequency = <125000000>;
+		status = "disabled";
+	};
+	ksz8463: ksz8463@0 {
+		compatible = "microchip,ksz8463";
+		reg = <2>;
+		phy-mode = "mii";
+		spi-max-frequency = <32000000>;
+		spi-cpha;
+		spi-cpol;
+		status = "disabled";
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+					reg = <0>;
+					label = "lan1";
+			};
+
+			port@1 {
+					reg = <1>;
+					label = "lan2";
+			};
+
+			port@3 {
+				reg = <2>;
+				label = "cpu";
+				ethernet = <&fec1>;
+				fixed-link {
+					speed = <100>;
+					full-duplex;
+				};
+			};
+		};
+	};
+
+
+
+};	
+
 
 &i2c3 {
         status = "disabled";
