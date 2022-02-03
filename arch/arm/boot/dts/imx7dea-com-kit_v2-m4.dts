@@ -8,15 +8,11 @@
 
 #include "imx7dea-com-kit_v2.dts"
 
-// / {
-// 	memory {
-// 		linux,usable-memory = <0x80000000 0x1ff00000>,
-// 				<0xa0000000 0x1ff00000>;
-// 	};
+
 /{
 	memory {
-		linux,usable-memory = <0x80000000 0x3ff00000>;
-		reg = <0x80000000 0x40000000>;
+		linux,usable-memory = <0x80000000 0x1ff00000>,
+				<0xa0000000 0x1ff00000>;
 	};
 	reserved-memory {
                 m4_reserved{
@@ -33,6 +29,32 @@
 		reg = <0x007f8000 0x8000>;
 	};
 };
+&gpio5 {
+	status = "disabled";
+};
+
+&gpio6 {
+	status = "disabled";
+};
+
+&gpio7 {
+	status = "disabled";
+};
+
+&uart5 {
+	status = "disabled";
+};//vf
+
+&usdhc2 {
+        status = "disabled";
+};//vf
+
+&qspi_m4 {
+	status = "disabled";//vf
+};
+&snvs_rtc {
+   status = "okay";
+};//vf
 
 &adc1 {
 	status = "disabled";
