@@ -49,9 +49,6 @@
         status = "disabled";
 };//vf
 
-&qspi_m4 {
-	status = "disabled";//vf
-};
 &snvs_rtc {
    status = "okay";
 };//vf
