@@ -29,8 +29,9 @@
 		reg = <0x007f8000 0x8000>;
 	};
 };
-gpio3: gpio@30220000 {
+&gpio3 {
 	cd-gpios = <&gpio3 16 GPIO_ACTIVE_LOW>;
+	status = "okay";
 };
 &gpio5 {
 	status = "disabled";
