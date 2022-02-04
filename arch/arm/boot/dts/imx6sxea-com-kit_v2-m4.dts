@@ -18,7 +18,7 @@
 	};
 reserved-memory {
                 m4_reserved{
-                        reg = <0x9FF00000 0x100000>;//, <0x20000000 0xFFFFF>, <0x22000000 0x1FFFFF>;
+                        reg = <0x9FF00000 0x100000>, <0x20000000 0xFFFFF>, <0x22000000 0x1FFFFF>;
                         no-map;
                 };
 		/*linux,cma {
@@ -96,20 +96,20 @@ pps-gen {
  * The following modules are conflicting with M4, disable them when m4
  * is running.
  */
-&gpio1 {
-	status = "disabled";
-};
-&gpio2 {
-	status = "disabled";
-};
+// &gpio1 {
+// 	status = "disabled";
+// };
+// &gpio2 {
+// 	status = "disabled";
+// };
 
-&gpio3 {
-	status = "disabled";
-};
+// &gpio3 {
+// 	status = "disabled";
+// };
 
-&gpio4 {
-	status = "disabled";
-};
+// &gpio4 {
+// 	status = "disabled";
+// };
 
 &gpio5 {
 	status = "disabled";
