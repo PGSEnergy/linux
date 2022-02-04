@@ -216,7 +216,6 @@ pps-gen {
 &qspi_m4 {
 	status = "disabled";//vf
 };
-
 &ocram {
 	reg = <0x00901000 0x1E000>;
 };
@@ -228,9 +227,9 @@ pps-gen {
 &epit1 {
 	status = "disabled";//st
 }
-&epit2 {
-	status = "disabled";//st
-}
+// &epit2 {
+// 	status = "disabled";//st
+// }
 &sdma{
 	status = "disabled";//st
 }
