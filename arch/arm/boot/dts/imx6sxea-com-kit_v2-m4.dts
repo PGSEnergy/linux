@@ -96,6 +96,20 @@ pps-gen {
  * The following modules are conflicting with M4, disable them when m4
  * is running.
  */
+&gpio1 {
+	status = "disabled";
+};
+&gpio2 {
+	status = "disabled";
+};
+
+&gpio3 {
+	status = "disabled";
+};
+
+&gpio4 {
+	status = "disabled";
+};
 
 &gpio5 {
 	status = "disabled";
