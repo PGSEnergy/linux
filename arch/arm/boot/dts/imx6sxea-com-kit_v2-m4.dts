@@ -107,9 +107,9 @@ pps-gen {
 // 	status = "disabled";
 // };
 
-&gpio4 {
-	status = "disabled";
-};
+// &gpio4 {
+// 	status = "disabled";
+// };
 
 &gpio5 {
 	status = "disabled";
