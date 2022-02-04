@@ -225,6 +225,15 @@ pps-gen {
    status = "okay";
 };//vf
 
+&epit1 {
+	status = "disabled";//st
+}
+&epit2 {
+	status = "disabled";//st
+}
+&sdma{
+	status = "disabled";//st
+}
 &clks {
 	fsl,shared-clks-number = <0x23>;
 	fsl,shared-clks-index = <IMX6SX_CLK_PLL2_BUS IMX6SX_CLK_PLL2_PFD0
