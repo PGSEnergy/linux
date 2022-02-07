@@ -238,12 +238,12 @@ pps-gen {
    status = "okay";
 };//vf
 
-// &epit1 {
-// 	status = "disabled";//st
-// };
-// &epit2 {
-// 	status = "disabled";//st
-// };
+&epit1 {
+	status = "disabled";//st
+};
+&epit2 {
+	status = "disabled";//st
+};
 // &sdma{
 // 	status = "disabled";//st
 // };
