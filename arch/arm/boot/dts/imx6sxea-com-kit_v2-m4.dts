@@ -26,13 +26,13 @@ reserved-memory {
 		};*/
 };/*vf*/
 
-pps-gen {
-	pinctrl-names = "default";
-	pinctrl-0 = <&pps_gen_pins>;
-	compatible = "pps-gen-gpio";
-	gpios = <&gpio1 9>;
-	default-state = "off";
-};
+// pps-gen {
+// 	pinctrl-names = "default";
+// 	pinctrl-0 = <&pps_gen_pins>;
+// 	compatible = "pps-gen-gpio";
+// 	gpios = <&gpio1 9>;
+// 	default-state = "off";
+// };
 
 // pps {
 // 		pinctrl-names = "default";
@@ -225,15 +225,6 @@ pps-gen {
    status = "okay";
 };//vf
 
-&epit1 {
-	status = "disabled";//st
-}
-&epit2 {
-	status = "disabled";//st
-}
-&sdma{
-	status = "disabled";//st
-}
 &clks {
 	fsl,shared-clks-number = <0x23>;
 	fsl,shared-clks-index = <IMX6SX_CLK_PLL2_BUS IMX6SX_CLK_PLL2_PFD0
