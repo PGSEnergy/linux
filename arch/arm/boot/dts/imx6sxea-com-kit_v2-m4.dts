@@ -81,12 +81,12 @@ reserved-memory {
 				MX6SX_PAD_QSPI1A_SS0_B__ECSPI1_SS0         0x000010B0                        
 				>;                
 				};
-			pps_gen_pins: pinmux_pps_gen_pins {
-  			pinctrl-single,pins = <
-				MX6SX_PAD_GPIO1_IO09__GPIO1_IO_9           0x000010B0
+			// pps_gen_pins: pinmux_pps_gen_pins {
+  			// pinctrl-single,pins = <
+			// 	MX6SX_PAD_GPIO1_IO09__GPIO1_IO_9           0x000010B0
 				
-			>;
-			};
+			// >;
+			// };
 
 		
 	};
