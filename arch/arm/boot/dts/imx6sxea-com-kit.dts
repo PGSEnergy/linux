@@ -753,20 +753,5 @@ ecspi1 {
 				MX6SX_PAD_KEY_ROW2__GPIO2_IO_17		0x1b0b0
 			>;
 		};
-//     /*pinctrl_ecspi1_cs: ecspi1_cs_grp {
-//               fsl,pins = <
-//                     //MX6SX_PAD_KEY_ROW1__GPIO2_IO_16    0x80000000    /* cs0,  */
-//                     //MX6SX_PAD_KEY_ROW3__GPIO2_IO_18       0x80000000    /* cs1 */
-//                       //MX6SX_PAD_KEY_ROW1__GPIO2_IO_16    0x000010B0    /* cs0,  */
-//                       MX6SX_PAD_KEY_ROW1__ECSPI1_SS0 0x000010B0
-//                      // MX6SX_PAD_KEY_ROW3__GPIO2_IO_18       0x000010B0    /* cs1 */
-//                       //MX6SX_PAD_KEY_COL3__GPIO2_IO_13    0x000010B0    /* cs2,  */
-//                       //MX6SX_PAD_KEY_ROW2__GPIO2_IO_17       0x000010B0    /* cs3 */
-//               >;
-//         };
-};/*vf*/
-
-
-
 	};
 };
